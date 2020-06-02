@@ -1,0 +1,16 @@
+#topBar {
+	height: 90px;
+	background: rgba(100, 100, 100, 0.15);
+}
+
+.navLink {
+	font-size: x-large;
+	transition: 0.25s;
+	color: rgba(50, 50, 50, 0.7);
+}
+
+.navLink:hover {
+	color: white;
+	text-shadow: 0 0 3px black;
+	text-decoration: none;
+}

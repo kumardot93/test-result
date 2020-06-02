@@ -1,0 +1,61 @@
+.navLink {
+	font-size: x-large;
+	transition: 0.25s;
+	color: rgba(50, 50, 50, 0.7);
+}
+
+.navLink:hover {
+	color: white;
+	text-shadow: 0 0 3px black;
+	text-decoration: none;
+}
+
+#userBtn {
+	border-radius: 50%;
+	overflow: hidden;
+}
+
+#userBtn:focus {
+	outline: 0;
+}
+
+#userBtnImg {
+	height: 50px;
+	width: 50px;
+	/* border-radius: 50%; */
+}
+
+#userPannel {
+	position: absolute;
+	right: 20px;
+	top: 85px;
+	box-shadow: 3px 3px 4px black;
+	z-index: 2;
+}
+
+#userPannel::before {
+	position: absolute;
+	bottom: 100%;
+	right: 16px;
+	content: '';
+	border-width: 7px;
+	border-style: solid;
+	border-color: transparent transparent white transparent;
+	text-shadow: 0 0 4px black;
+}
+
+.userPannelLink {
+	display: block;
+	font-size: medium;
+}
+
+.userPannelLink:hover {
+	color: green;
+	text-shadow: none;
+	transform: scale(1.1);
+}
+
+.userData {
+	display: block;
+	color: black;
+}

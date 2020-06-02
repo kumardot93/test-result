@@ -1,0 +1,27 @@
+#sidebarMain {
+	display: inline-block;
+	width: 20vw;
+	height: 85%;
+	border-radius: 5px;
+	overflow-x: hidden;
+	overflow-y: auto;
+	background-color: #8f94fb;
+}
+
+#sideHead {
+	font-size: xx-large;
+}
+
+#addBtn {
+	/* background-color: transparent; */
+	border: none;
+	float: right;
+	transition: 0.3s;
+	font-size: xx-large;
+	color: white;
+	margin: 3px;
+}
+
+#addBtn:hover {
+	transform: scale(1.1);
+}
