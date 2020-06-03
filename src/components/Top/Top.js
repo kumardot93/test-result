@@ -3,6 +3,7 @@ import styles from './css/Top.module.css';
 import Nav from './Nav.js';
 import UserBtn from './UserBtn.js';
 import Notiification from './Notification.js';
+import SocketStatus from './SockerStatus.js';
 
 import { connect } from 'react-redux';
 import { updateProfile } from './../../redux/actions/Profile.js';
@@ -18,8 +19,11 @@ function Top(props) {
 	);
 	return (
 		<div id={styles.topBar} className="d-flex flex-row align-items-center col-12 pl-2  text-light">
-			<h1 className="display-3 ml-2 text-dark">eduHub</h1>
+			<h1 className="display-3 ml-2 text-dark" id={styles.edu} onClick={() => window.location.assign('/')}>
+				eduHub
+			</h1>
 			<Nav />
+			<SocketStatus />
 			<Notiification />
 			<UserBtn />
 		</div>

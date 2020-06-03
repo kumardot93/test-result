@@ -3,7 +3,7 @@ import styles from './css/Top.module.css';
 
 function Nav(props) {
 	return (
-		<div className="ml-4 pl-4">
+		<div className="ml-4 pl-4" id={styles.navCont}>
 			<a href="#" className={[ styles.navLink, 'ml-4 mr-4' ].join(' ')}>
 				Home
 			</a>

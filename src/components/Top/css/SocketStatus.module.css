@@ -1,0 +1,74 @@
+#dot1 {
+	animation: dot1Anim 4s infinite;
+}
+#dot2 {
+	animation: dot2Anim 4s infinite;
+}
+#dot3 {
+	animation: dot3Anim 4s infinite;
+}
+
+@keyframes dot1Anim {
+	0% {
+		opacity: 1;
+	}
+	69% {
+		opacity: 1;
+	}
+	70% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+@keyframes dot2Anim {
+	0% {
+		opacity: 0;
+	}
+	19% {
+		opacity: 0;
+	}
+	20% {
+		opacity: 1;
+	}
+	69% {
+		opacity: 1;
+	}
+	70% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+@keyframes dot3Anim {
+	0% {
+		opacity: 0;
+	}
+	39% {
+		opacity: 0;
+	}
+	40% {
+		opacity: 1;
+	}
+	69% {
+		opacity: 1;
+	}
+	70% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+@media only screen and (max-width: 800px) {
+	#status {
+		position: relative;
+		font-size: 2.25vw;
+		top: 6px;
+	}
+}

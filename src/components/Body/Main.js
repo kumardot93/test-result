@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styles from './css/Main.module.css';
 import Sidebar from './Sidebar.js';
+import { extractKey } from './../../SocketManager.js';
 
 import { connect } from 'react-redux';
 import { updateTestData } from './../../redux/actions/Test.js';
@@ -9,18 +10,6 @@ class Main extends Component {
 	constructor(props) {
 		super(props);
 	}
-
-	extractKey = () => {
-		//extracts the pk form the url
-		let url = window.location.href;
-		let size = url.length;
-		let lastindexofSlash = url.lastIndexOf('/');
-		if (lastindexofSlash === size - 1) {
-			url = url.slice(0, -1);
-			lastindexofSlash = url.lastIndexOf('/');
-		}
-		return url.substring(lastindexofSlash + 1);
-	};
 
 	fetchData = (key) => {
 		//fetches all the test data at once
@@ -32,7 +21,7 @@ class Main extends Component {
 
 	componentDidMount = () => {
 		//extracts key from url and fetchs all the test data at once
-		let key = this.extractKey();
+		let key = extractKey();
 		this.fetchData(key);
 	};
 

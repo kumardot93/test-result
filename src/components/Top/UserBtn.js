@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 function UserBtn(props) {
 	const [ userPannelVis, changeVis ] = useState('none');
 	return (
-		<div className="ml-4">
+		<div className="ml-2" id={styles.userBtnCont}>
 			<button
 				className="p-0"
 				id={styles.userBtn}

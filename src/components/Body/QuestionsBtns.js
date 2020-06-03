@@ -13,7 +13,12 @@ class QuestionsBtns extends Component {
 		let questions = '';
 		questions = this.props.questions.map((data, index) => {
 			return (
-				<button className="btn btn-dark m-2" key={index} onClick={() => this.props.updateActive(index)}>
+				<button
+					className={[ 'btn btn-dark m-2', styles.btns ].join(' ')}
+					key={index}
+					onClick={() => this.props.updateActive(index)}
+					disabled={index == this.props.active}
+				>
 					{index + 1}
 				</button>
 			);
