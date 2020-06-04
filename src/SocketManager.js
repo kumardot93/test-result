@@ -4,7 +4,7 @@ import Message from './components/Message.js';
 
 import store from './redux/Store.js';
 import { connect } from 'react-redux';
-import { setSocket, connected, sending } from './redux/actions/SocketState.js';
+import { setSocket, connected, sending, saved } from './redux/actions/SocketState.js';
 
 class SocketManager extends Component {
 	constructor(props) {
@@ -30,6 +30,9 @@ class SocketManager extends Component {
 				case 'connected':
 					this.props.socketConnected();
 					break;
+				case 'saved':
+					this.props.saved();
+					break;
 			}
 		};
 
@@ -45,10 +48,9 @@ class SocketManager extends Component {
 
 	BufferManager = () => {
 		let questions = store.getState().Test.questions;
-		let isready = store.getState().SocketState.isready;
 		if (this.props.isready === 0) return;
 		if (this.props.buffer.length === 0) return;
-		let qstn = questions[0];
+		let qstn = questions[this.props.buffer[0]];
 		let data = {
 			type: 'questionUpdate',
 			payload: qstn
@@ -66,7 +68,8 @@ class SocketManager extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		buffer: state.SocketState.buffer
+		buffer: state.SocketState.buffer,
+		isready: state.SocketState.isready
 	};
 };
 
@@ -74,7 +77,8 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		setSocket: (ws) => dispatch(setSocket(ws)),
 		socketConnected: () => dispatch(connected()),
-		sendingData: () => dispatch(sending())
+		sendingData: () => dispatch(sending()),
+		saved: () => dispatch(saved())
 	};
 };
 

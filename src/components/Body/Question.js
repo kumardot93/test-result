@@ -80,6 +80,7 @@ class Question extends Component {
 									style={{ display: 'inline' }}
 									type="text"
 									name="answer"
+									value={this.props.question.fields.answer}
 									onChange={(ev) => this.props.updateAnswer(ev.target.value)}
 								/>
 							</React.Fragment>
@@ -90,6 +91,7 @@ class Question extends Component {
 							<label>Marks:</label>
 							<input
 								className={[ 'form-control w-50 ml-4', styles.marksinp ].join(' ')}
+								value={this.props.question.fields.marks}
 								onChange={(ev) => this.props.updateMarks(ev.target.value)}
 							/>
 							<br />

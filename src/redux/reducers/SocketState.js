@@ -15,6 +15,11 @@ const SocketState = (state = { socket: null, status: 'connecting', buffer: [], i
 		case 'sendingData':
 			state.isready = 0;
 			state.status = 'saving';
+		case 'savedData':
+			state.buffer.shift();
+			state.buffer = [ ...state.buffer ];
+			if (state.buffer.length == 0) state.status = 'saved';
+			state.isready = 1;
 	}
 	return state;
 };

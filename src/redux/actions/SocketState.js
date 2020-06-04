@@ -25,3 +25,10 @@ export function sending() {
 		payload: null
 	};
 }
+
+export function saved() {
+	return {
+		type: 'savedData',
+		payload: null
+	};
+}

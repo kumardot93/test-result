@@ -9,7 +9,15 @@ const Test = (state = { active: -1, questions: [] }, action) => {
 				...state.questions,
 				{
 					pk: null,
-					fields: { parent_test: state.pk, text: '', type: '', image: '', answer: '', jsonChoices: '' }
+					fields: {
+						parent_test: state.pk,
+						text: '',
+						type: '',
+						image: '',
+						marks: 0,
+						answer: '',
+						jsonChoices: ''
+					}
 				}
 			];
 			state.active = state.questions.length - 1;
