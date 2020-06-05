@@ -6,11 +6,9 @@ import { extractKey } from './../../SocketManager.js';
 import { connect } from 'react-redux';
 import { updateTestData } from './../../redux/actions/Test.js';
 
+//Entry point for the main body
 class Main extends Component {
-	constructor(props) {
-		super(props);
-	}
-
+	//fetching and saving the test data
 	fetchData = (key) => {
 		//fetches all the test data at once
 		fetch(window.base + '/material/api/test/data/' + key + '/', { credentials: window.cred })
@@ -19,6 +17,7 @@ class Main extends Component {
 			.catch((error) => alert('Error fetching data: possible reasons unauthorised access aur connection issue '));
 	};
 
+	//Fetching data after component has been mounted
 	componentDidMount = () => {
 		//extracts key from url and fetchs all the test data at once
 		let key = extractKey();
@@ -27,7 +26,7 @@ class Main extends Component {
 
 	render() {
 		return (
-			<div id={styles.main} className="p-1 d-flex flex-row pt-2">
+			<div id={styles.main} className="p-1 d-flex pt-2">
 				<Sidebar />
 			</div>
 		);
@@ -38,7 +37,7 @@ const mapStateToProps = null;
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		updateTestData: (data) => dispatch(updateTestData(data))
+		updateTestData: (data) => dispatch(updateTestData(data)) //to store the fetched test data
 	};
 };
 

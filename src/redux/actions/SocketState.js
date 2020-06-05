@@ -32,3 +32,24 @@ export function saved() {
 		payload: null
 	};
 }
+
+export function disconnected() {
+	return {
+		type: 'disconnected',
+		payload: null
+	};
+}
+
+export function addToDataBuffer(data) {
+	return {
+		type: 'addToDataBuffer',
+		payload: data
+	};
+}
+
+export function dataBufferShift() {
+	return {
+		type: 'dataBufferShift',
+		payload: null
+	};
+}

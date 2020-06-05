@@ -1,4 +1,7 @@
-const SocketState = (state = { socket: null, status: 'connecting', buffer: [], isready: 0 }, action) => {
+const SocketState = (
+	state = { socket: null, status: 'connecting', buffer: [], dataBuffer: [], isready: 0 },
+	action
+) => {
 	state = { ...state };
 	switch (action.type) {
 		case 'setSocket':
@@ -8,18 +11,34 @@ const SocketState = (state = { socket: null, status: 'connecting', buffer: [], i
 			state.status = 'connected';
 			state.isready = 1;
 			break;
+		case 'disconnected':
+			state.status = 'reconnecting';
+			state.isready = 0;
+			break;
 		case 'addToBuffer':
 			state.buffer = [ ...state.buffer, action.payload ];
-			state.status = 'saving';
 			break;
 		case 'sendingData':
 			state.isready = 0;
 			state.status = 'saving';
+			break;
 		case 'savedData':
 			state.buffer.shift();
 			state.buffer = [ ...state.buffer ];
-			if (state.buffer.length == 0) state.status = 'saved';
+			if (state.buffer.length === 0 && state.dataBuffer.length === 0) state.status = 'saved';
 			state.isready = 1;
+			break;
+		case 'dataBufferShift':
+			state.dataBuffer.shift();
+			state.dataBuffer = [ ...state.dataBuffer ];
+			state.isready = 1;
+			if (state.buffer.length === 0 && state.dataBuffer.length === 0) state.status = 'saved';
+			break;
+		case 'addToDataBuffer':
+			state.dataBuffer = [ ...state.dataBuffer, action.payload ];
+			break;
+		default:
+			break;
 	}
 	return state;
 };

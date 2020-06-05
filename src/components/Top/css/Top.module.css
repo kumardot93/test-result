@@ -1,5 +1,6 @@
 #topBar {
 	height: 90px;
+	max-width: 100vw;
 	background: rgba(100, 100, 100, 0.15);
 }
 
@@ -13,6 +14,10 @@
 	color: white;
 	text-shadow: 0 0 3px black;
 	text-decoration: none;
+}
+
+#edu {
+	cursor: pointer;
 }
 
 @media only screen and (max-width: 850px) {

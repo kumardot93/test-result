@@ -3,6 +3,8 @@ const Profile = (state = {}, action) => {
 		case 'updateProfile':
 			state = { ...action.payload };
 			break;
+		default:
+			break;
 	}
 	return state;
 };

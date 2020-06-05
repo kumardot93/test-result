@@ -1,7 +1,7 @@
 #sidebarMain {
 	display: inline-block;
 	width: 20vw;
-	height: 85%;
+	height: stretch;
 	border-radius: 5px;
 	overflow-x: hidden;
 	overflow-y: auto;
@@ -24,4 +24,16 @@
 
 #addBtn:hover {
 	transform: scale(1.1);
+}
+
+@media only screen and (max-width: 950px) {
+	#sidebarMain {
+		width: 98%;
+		height: auto;
+		min-height: 120px;
+		max-height: 25vh;
+		margin-bottom: 4px;
+		overflow-y: auto;
+		overflow-x: hidden;
+	}
 }

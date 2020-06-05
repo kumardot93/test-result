@@ -1,4 +1,4 @@
-const Test = (state = { active: -1, questions: [] }, action) => {
+const Test = (state = { active: -1, questions: [], fields: {}, changed: 0 }, action) => {
 	state = { ...state };
 	switch (action.type) {
 		case 'updateTestData':
@@ -25,8 +25,18 @@ const Test = (state = { active: -1, questions: [] }, action) => {
 		case 'updateActive':
 			if (state.active !== -1) {
 				state.questions[state.active].changed = 0;
+			} else if (state.active === -1) {
+				state.changed = 0;
 			}
 			state.active = action.payload;
+			break;
+		case 'updateTestTitle':
+			state.fields.title = action.payload;
+			state.changed = 1;
+			break;
+		case 'updateTestDescription':
+			state.fields.description = action.payload;
+			state.changed = 1;
 			break;
 		case 'updateActiveQuestionText':
 			state.questions[state.active].fields.text = action.payload;
@@ -49,9 +59,18 @@ const Test = (state = { active: -1, questions: [] }, action) => {
 			state.questions[state.active] = { ...state.questions[state.active] };
 			break;
 		case 'updateActiveChoices':
-			state.questions[state.active].fields.jsonChoices[action.payload.cindex - 1] = action.payload.cdata;
+			let c = state.questions[state.active].fields.jsonChoices;
+			c = c === '' ? [] : JSON.parse(c);
+			c[action.payload.cindex - 1] = action.payload.cdata;
+			state.questions[state.active].fields.jsonChoices = JSON.stringify(c);
 			state.questions[state.active].changed = 1;
 			state.questions[state.active] = { ...state.questions[state.active] };
+			break;
+		case 'imageUploaded':
+			state.questions[action.payload.index].fields.image = action.payload.image;
+			state.questions[action.payload.index] = { ...state.questions[action.payload.index] };
+			break;
+		default:
 			break;
 	}
 	return state;

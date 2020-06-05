@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import styles from './css/Top.module.css';
 import Nav from './Nav.js';
 import UserBtn from './UserBtn.js';
@@ -20,7 +20,7 @@ function Top(props) {
 	return (
 		<div id={styles.topBar} className="d-flex flex-row align-items-center col-12 pl-2  text-light">
 			<h1 className="display-3 ml-2 text-dark" id={styles.edu} onClick={() => window.location.assign('/')}>
-				eduHub
+				<span>eduHub</span>
 			</h1>
 			<Nav />
 			<SocketStatus />
