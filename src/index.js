@@ -12,12 +12,10 @@ window.media_url = window.base + '/media/';
 window.cred = 'include';
 
 ReactDOM.render(
-	<React.StrictMode>
-		<Provider store={Store}>
-			<App />
-			<SocketManager />
-		</Provider>,
-	</React.StrictMode>,
+	<Provider store={Store}>
+		<App />
+		<SocketManager />
+	</Provider>,
 	document.getElementById('root')
 );
 // var ws = new WebSocket('ws://' + window.host + '/ws/material/testMaker/');

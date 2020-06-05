@@ -15,6 +15,7 @@ export function updateTestData(data) {
 }
 
 export function newQuestion() {
+	AddingToBuffer();
 	return {
 		type: 'newQuestion'
 	};

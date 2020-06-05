@@ -20,6 +20,11 @@ const Test = (state = { active: -1, questions: [], fields: {}, changed: 0 }, act
 					}
 				}
 			];
+			if (state.active !== -1) {
+				state.questions[state.active].changed = 0;
+			} else if (state.active === -1) {
+				state.changed = 0;
+			}
 			state.active = state.questions.length - 1;
 			break;
 		case 'updateActive':
