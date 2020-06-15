@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styles from './css/Main.module.css';
 import Sidebar from './Sidebar.js';
+import Result from './Result.js';
 import { extractKey } from './../../SocketManager.js';
 
 import { connect } from 'react-redux';
@@ -9,9 +10,12 @@ import { updateTestData } from './../../redux/actions/Test.js';
 //Entry point for the main body
 class Main extends Component {
 	//fetching and saving the test data
+	state = {
+		enter: 1
+	};
 	fetchData = (key) => {
 		//fetches all the test data at once
-		fetch(window.base + '/material/api/test/data/' + key + '/', { credentials: window.cred })
+		fetch(window.base + '/material/api/test/responseData/' + key + '/', { credentials: window.cred })
 			.then((Response) => Response.json())
 			.then((data) => this.props.updateTestData(data))
 			.catch((error) => alert('Error fetching data: possible reasons unauthorised access aur connection issue '));
@@ -24,16 +28,55 @@ class Main extends Component {
 		this.fetchData(key);
 	};
 
+	enter = (val) => {
+		this.setState({ enter: val });
+	};
+
+	save = (ev) => {
+		let data = this.props.questions;
+		console.log('before save', data);
+		data = JSON.stringify(data);
+		let form = new FormData();
+		form.append('data', data);
+		fetch(window.base + '/material/api/test/responseData/checkSave/' + this.props.res.pk + '/', {
+			method: 'POST',
+			credentials: window.cred,
+			body: form
+		});
+	};
+
+	screen = () => {
+		let res;
+		switch (this.state.enter) {
+			case 1:
+				res = <Result enter={this.enter} />;
+				break;
+			case 2:
+				res = <Sidebar enter={this.enter} submitted={1} />;
+				break;
+		}
+
+		return res;
+	};
+
 	render() {
 		return (
 			<div id={styles.main} className="p-1 d-flex pt-2">
-				<Sidebar />
+				{this.screen()}
+				<button id={styles.save} className="form-control btn btn-secondary" onClick={this.save}>
+					Save
+				</button>
 			</div>
 		);
 	}
 }
 
-const mapStateToProps = null;
+const mapStateToProps = (state) => {
+	return {
+		questions: state.Test.fields.questions,
+		res: state.Test
+	};
+};
 
 const mapDispatchToProps = (dispatch) => {
 	return {

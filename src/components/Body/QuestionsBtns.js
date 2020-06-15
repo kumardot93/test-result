@@ -9,39 +9,32 @@ class QuestionsBtns extends Component {
 		let questions = '';
 		//mapping question buttons from all the available question in redux state
 		questions = this.props.questions.map((data, index) => {
+			let state = data.state.join('');
+			let cls = '';
+			if (data.marks == 0) cls = 'btn-danger';
+			else if (data.marks !== data.fields.marks) cls = 'btn-warning';
+			else cls = 'btn-success';
+			if (index === this.props.active) cls = 'btn-primary';
 			return (
 				<button
-					className={[ 'btn btn-dark m-2', styles.btns ].join(' ')}
+					className={[ 'btn m-2', styles.btns, cls ].join(' ')}
 					key={index}
 					onClick={() => this.props.updateActive(index)}
 					//update active questin on change also push to buffer for sending to backend i there is any change se the corrosponding action in redux/action/Top.js
-					disabled={index === this.props.active}
+					active={index === this.props.active}
 				>
 					{index + 1}
 				</button>
 			);
 		});
-		return (
-			<div id={styles.qBtnsCont}>
-				{' '}
-				<button
-					className={[ 'btn btn-dark m-2 form-control w-25', styles.btns ].join(' ')}
-					onClick={() => this.props.updateActive(-1)}
-					//update active questin to test data also push to buffer for sending to backend i there is any change se the corrosponding action in redux/action/Top.js
-					disabled={-1 === this.props.active}
-				>
-					Test
-				</button>{' '}
-				{questions}
-			</div>
-		);
+		return <div id={styles.qBtnsCont}>{questions}</div>;
 	}
 }
 
 const mapStateToProps = (state) => {
 	return {
 		active: state.Test.active,
-		questions: state.Test.questions
+		questions: state.Test.fields.questions
 	};
 };
 

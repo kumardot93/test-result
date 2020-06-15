@@ -5,10 +5,46 @@
 	/* margin-bottom: 10vh; */
 }
 
+.fullScreen {
+	position: fixed;
+	min-height: calc(100vh - 26px);
+	widows: 100vw;
+	top: 0;
+	background-color: aliceblue;
+}
+
+#timer {
+	position: fixed;
+	bottom: 0;
+	left: 2vw;
+	font-family: 'Orbitron', sans-serif;
+	z-index: 5;
+	max-height: 16px;
+}
+
+#save {
+	position: fixed;
+	bottom: 2px;
+	width: 96vw;
+	margin-left: 1.8vw;
+}
+
 @media only screen and (max-width: 950px) {
 	#main {
-		height: calc(100vh - 105px);
+		height: calc(100vh - 65px);
 		flex-direction: column;
 		align-items: center;
+	}
+
+	.fullScreen {
+		min-height: calc(100vh - 22px);
+	}
+
+	#timer {
+		font-size: 3vw;
+	}
+	#save {
+		margin-left: none;
+		margin: auto;
 	}
 }
