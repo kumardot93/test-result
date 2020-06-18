@@ -7,6 +7,7 @@ function Result(props) {
 	let total = 0;
 	let marks = 0;
 	props.questions.forEach((data) => {
+		//Calculating marks
 		total += data.fields.marks;
 		marks += data.marks;
 	});

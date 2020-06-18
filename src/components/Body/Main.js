@@ -11,7 +11,7 @@ import { updateTestData } from './../../redux/actions/Test.js';
 class Main extends Component {
 	//fetching and saving the test data
 	state = {
-		enter: 1
+		enter: 1 //Determines what to render
 	};
 	fetchData = (key) => {
 		//fetches all the test data at once
@@ -33,8 +33,8 @@ class Main extends Component {
 	};
 
 	save = (ev) => {
+		//save any update for marks and remarks
 		let data = this.props.questions;
-		console.log('before save', data);
 		data = JSON.stringify(data);
 		let form = new FormData();
 		form.append('data', data);
@@ -46,6 +46,7 @@ class Main extends Component {
 	};
 
 	screen = () => {
+		//Function to determine what to render
 		let res;
 		switch (this.state.enter) {
 			case 1:

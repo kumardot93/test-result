@@ -11,9 +11,11 @@ class QuestionsBtns extends Component {
 		questions = this.props.questions.map((data, index) => {
 			let state = data.state.join('');
 			let cls = '';
+			//Btn color based on marks
 			if (data.marks == 0) cls = 'btn-danger';
 			else if (data.marks !== data.fields.marks) cls = 'btn-warning';
 			else cls = 'btn-success';
+
 			if (index === this.props.active) cls = 'btn-primary';
 			return (
 				<button
