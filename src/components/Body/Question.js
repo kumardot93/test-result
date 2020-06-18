@@ -11,7 +11,7 @@ class Question extends Component {
 		let res = '';
 
 		if (this.props.question.fields.type == 'F') {
-			if (this.props.question.answer == this.props.question.fields.answer)
+			if (this.props.question.answer.toLocaleLowerCase() == this.props.question.fields.answer.toLocaleLowerCase())
 				res = <h6 className="text-success ml-4 mt-4 pl-1">Correct</h6>;
 			else res = <h6 className="text-danger ml-4 mt-4 pl-1">Wrong</h6>;
 		} else if (this.props.question.fields.type == 'O' || this.props.question.fields.type == 'M') {
