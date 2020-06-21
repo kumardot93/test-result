@@ -12,9 +12,9 @@ class QuestionsBtns extends Component {
 			let state = data.state.join('');
 			let cls = '';
 			//Btn color based on marks
-			if (data.marks == 0) cls = 'btn-danger';
-			else if (data.marks !== data.fields.marks) cls = 'btn-warning';
-			else cls = 'btn-success';
+			if (data.marks == data.fields.marks) cls = 'btn-success';
+			else if (data.marks === 0) cls = 'btn-danger';
+			else cls = 'btn-warning';
 
 			if (index === this.props.active) cls = 'btn-primary';
 			return (

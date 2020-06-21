@@ -8,19 +8,15 @@ import { updateMarks, updateRemarks } from './../../redux/actions/Test.js';
 
 class Question extends Component {
 	check = () => {
-		//Checking student's answer with actual answer
+		// check given marks and total marks and tag the question accordingly
 		let res = '';
-
-		if (this.props.question.fields.type == 'F') {
-			if (this.props.question.answer.toLocaleLowerCase() == this.props.question.fields.answer.toLocaleLowerCase())
+		if (this.props.question.fields.type !== 'D') {
+			if (this.props.question.marks === this.props.question.fields.marks)
 				res = <h6 className="text-success ml-4 mt-4 pl-1">Correct</h6>;
-			else res = <h6 className="text-danger ml-4 mt-4 pl-1">Wrong</h6>;
-		} else if (this.props.question.fields.type == 'O' || this.props.question.fields.type == 'M') {
-			if (this.props.question.answer.join('') == this.props.question.fields.anaswer)
-				res = <h6 className="text-success ml-4 mt-4 pl-1">Correct</h6>;
+			else if (this.props.question.marks !== 0)
+				res = <h6 className="text-warning ml-4 mt-4 pl-1">Partially Correct</h6>;
 			else res = <h6 className="text-danger ml-4 mt-4 pl-1">Wrong</h6>;
 		}
-
 		return res;
 	};
 
@@ -47,7 +43,7 @@ class Question extends Component {
 						<Image />
 						<br />
 
-						{this.props.question.fields.type === 'O' || this.props.question.fields.type === 'M' ? (
+						{this.props.question.fields.type !== 'F' && this.props.question.fields.type !== 'D' ? (
 							<Choices type={this.props.question.fields.type} submitted={this.props.submitted} />
 						) : this.props.question.fields.type !== 'D' ? (
 							<React.Fragment>
