@@ -4,7 +4,6 @@ import Choices from './Choices.js';
 import Image from './Image.js';
 
 import { connect } from 'react-redux';
-import { updateMarks, updateRemarks } from './../../redux/actions/Test.js';
 
 class Question extends Component {
 	check = () => {
@@ -73,22 +72,17 @@ class Question extends Component {
 								<label className="mt-4">Remarks:</label>
 								<textarea
 									className={[ 'pl-4 form-control' ].join(' ')}
-									rows="2"
+									rows="4"
 									value={this.props.question.remarks ? this.props.question.remarks : ''}
-									onChange={(ev) => this.props.updateRemarks(ev.target.value)}
+									readOnly={true}
 								/>
 								<label className="mt-4">Marks:</label>
 								<input
 									className={[ 'pl-4 form-control w-25', styles.ansInp ].join(' ')}
 									type="number"
 									name="marks"
-									max={this.props.question.fields.marks}
-									min={0}
 									value={this.props.question.marks}
-									onChange={(ev) =>
-										this.props.updaeMarks(
-											Math.min(Math.max(0, ev.target.value), this.props.question.fields.marks)
-										)}
+									readOnly={true}
 								/>
 							</div>
 						)}
@@ -108,11 +102,4 @@ const mapStateToProps = (state) => {
 	};
 };
 
-const mapDispatchToProps = (dispatch) => {
-	return {
-		updaeMarks: (m) => dispatch(updateMarks(m)),
-		updateRemarks: (t) => dispatch(updateRemarks(t))
-	};
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Question);
+export default connect(mapStateToProps)(Question);

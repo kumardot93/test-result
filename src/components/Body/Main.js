@@ -32,19 +32,6 @@ class Main extends Component {
 		this.setState({ enter: val });
 	};
 
-	save = (ev) => {
-		//save any update for marks and remarks
-		let data = this.props.questions;
-		data = JSON.stringify(data);
-		let form = new FormData();
-		form.append('data', data);
-		fetch(window.base + '/material/api/test/responseData/checkSave/' + this.props.res.pk + '/', {
-			method: 'POST',
-			credentials: window.cred,
-			body: form
-		});
-	};
-
 	screen = () => {
 		//Function to determine what to render
 		let res;
@@ -64,9 +51,6 @@ class Main extends Component {
 		return (
 			<div id={styles.main} className="p-1 d-flex pt-2">
 				{this.screen()}
-				<button id={styles.save} className="form-control btn btn-secondary" onClick={this.save}>
-					Save
-				</button>
 			</div>
 		);
 	}

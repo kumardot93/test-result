@@ -23,17 +23,3 @@ export function updateActive(index) {
 		payload: index
 	};
 }
-
-export function updateMarks(marks) {
-	return {
-		type: 'updateMarks',
-		payload: marks
-	};
-}
-
-export function updateRemarks(text) {
-	return {
-		type: 'updateRemarks',
-		payload: text
-	};
-}
